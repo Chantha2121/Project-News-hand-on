@@ -15,7 +15,7 @@ export default function SignUpPage() {
           <div className="space-y-2 text-center">
             <h1 className="text-2xl font-bold tracking-tight">Sign Up</h1>
             <p className="text-sm text-muted-foreground">
-              Please signup if you don't have an account
+              Please signup if don&apos;t have an account
             </p>
           </div>
 
