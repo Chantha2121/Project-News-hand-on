@@ -30,25 +30,36 @@ export default function Navbar() {
     router.push(path) // Navigate to the selected page
   }
 
+  const [searchQuery, setSearchQuery] = useState('')
+
+  const handleSearch = (e) => {
+    e.preventDefault()
+    if (searchQuery.trim()) {
+        router.push(`/search/${encodeURIComponent(searchQuery)}`) // Navigate to dynamic route
+    }
+  }
+
   return (
-    <nav className="bg-[#FEF5F5] border-b border-gray-300">
+    <nav className="border-b border-gray-300">
       <div className="container mx-auto px-4 sm:px-3 lg:px-3 py-1">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
-            <Image
-              src="/logo.svg"
-              alt="Logo"
-              width={80}
-              height={80}
-              className="w-14 h-14 sm:w-16 sm:h-16"
-            />
-            <div>
-              <span className="text-sm sm:text-lg font-suwanpum font-bold text-orange-400">
-                Track News
-              </span>
+          <a href="/home">
+            <div className="flex items-center space-x-3">
+              <Image
+                src="/logo.svg"
+                alt="Logo"
+                width={80}
+                height={80}
+                className="w-14 h-14 sm:w-16 sm:h-16"
+              />
+              <div>
+                <span className="text-sm sm:text-lg font-suwanpum font-bold text-orange-400">
+                  Track News
+                </span>
+              </div>
             </div>
-          </div>
+          </a>
 
           {/* Search Bar for Small Screens */}
           <div
@@ -56,38 +67,52 @@ export default function Navbar() {
               isSearchVisible ? "translate-y-0" : "translate-y-[-100px]"
             }`}
           >
-            <div className="flex items-center bg-white rounded-full shadow-md px-3 py-1 w-60 sm:w-72">
+            <form onSubmit={handleSearch} className="flex items-center bg-white rounded-full shadow-md px-3 py-1 w-60 sm:w-72">
               <Search className="text-gray-400" />
               <Input
                 type="search"
                 placeholder="Search..."
                 className="pl-3 w-full"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
               <X
                 className="ml-2 text-gray-400 cursor-pointer"
                 onClick={toggleSearch}
               />
-            </div>
+            </form>
           </div>
 
           {/* Navigation Links */}
           <div className="hidden md:flex space-x-4 lg:space-x-6 text-gray-700 font-suwanpum">
-            <Link href="/" className="hover:text-gray-900 transition">Home</Link>
-            <Link href="/category-news" className="hover:text-gray-900 transition">Category News</Link>
+            <Link href="/home" className="hover:text-gray-900 transition">Home</Link>
+            <Link href="/category" className="hover:text-gray-900 transition">Category News</Link>
             <Link href="/hot-news" className="hover:text-gray-900 transition">Hot News</Link>
             <Link href="/about" className="hover:text-gray-900 transition">About</Link>
-            <Link href="/contacts" className="hover:text-gray-900 transition">Contacts</Link>
+            <Link href="/contact" className="hover:text-gray-900 transition">Contacts</Link>
           </div>
 
           {/* Search Bar and Buttons for Large Screens */}
           <div className="hidden lg:flex items-center space-x-4 font-suwanpum">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-              <Input
-                type="search"
-                placeholder="Search..."
-                className="pl-10 sm:w-30 md:hide lg:w-60 rounded-full border-gray-300"
-              />
+              <form onSubmit={handleSearch}>
+                <div className="flex items-center bg-white rounded-full shadow-md px-3 py-1 w-60 sm:w-72">
+                  <Search className="text-gray-400" />
+                  <Input
+                    type="search"
+                    placeholder="Search..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-3 w-full"
+                  />
+                  <Button
+                    type="submit"
+                    className="ml-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white px-3 rounded-full"
+                  >
+                    Search
+                  </Button>
+                </div>
+              </form>
             </div>
             <Link href="/login">
               <Button className="font-suwanpum px-4 sm:px-5 lg:px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full text-sm sm:text-base">
@@ -126,13 +151,13 @@ export default function Navbar() {
                 </SheetHeader>
                 <div className="flex flex-col space-y-4 mt-4 font-suwanpum">
                   <button
-                    onClick={() => closeSheetAndNavigate('/')}
+                    onClick={() => closeSheetAndNavigate('/home')}
                     className="block text-sm sm:text-base md:text-lg font-medium"
                   >
                     Home
                   </button>
                   <button
-                    onClick={() => closeSheetAndNavigate('/category-news')}
+                    onClick={() => closeSheetAndNavigate('/category')}
                     className="block text-sm sm:text-base md:text-lg font-medium"
                   >
                     Category News
@@ -150,7 +175,7 @@ export default function Navbar() {
                     About
                   </button>
                   <button
-                    onClick={() => closeSheetAndNavigate('/contacts')}
+                    onClick={() => closeSheetAndNavigate('/contact')}
                     className="block text-sm sm:text-base md:text-lg font-medium"
                   >
                     Contacts

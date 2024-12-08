@@ -1,12 +1,44 @@
 'use client'
 
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
 import Image from "next/image"
 import { User, Lock } from 'lucide-react'
+import axios from "axios";
+import Link from "next/link";
+
 
 export default function LoginPage() {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
+  const [success, setSuccess] = useState("")
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setError("")
+    setSuccess("")
+
+    try {
+      const response = await axios.post("http://localhost:3333/auth/login", {
+        email,
+        password,
+      })
+
+      if (response.status === 200) {
+        setSuccess("Login successful!")
+        setTimeout(() => {
+          // Navigate to dashboard or home page
+          window.location.href = "/home"
+        }, 1500)
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || "An error occurred during login.")
+    }
+  }
+
   return (
     <div className="min-h-screen w-full flex">
       {/* Left Section - Login Form */}
@@ -19,14 +51,16 @@ export default function LoginPage() {
             </p>
           </div>
 
-          <form className="space-y-4 p-8 m-2">
+          <form className="space-y-4 p-8 m-2" onSubmit={handleSubmit}>
             <div className="space-y-2">
               <div className="relative">
                 <User className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
                 <Input
                   className="pl-10"
-                  placeholder="Username"
-                  type="text"
+                  placeholder="Email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </div>
@@ -36,45 +70,29 @@ export default function LoginPage() {
                   className="pl-10"
                   placeholder="Password"
                   type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
               </div>
             </div>
 
+            {error && <p className="text-red-500 text-sm">{error}</p>}
+            {success && <p className="text-green-500 text-sm">{success}</p>}
+
             <div className="flex gap-4">
-            <Button className="md:mx-8 lg:mx-10 font-suwanpum px-4 sm:px-5 lg:px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full text-sm sm:text-base">
+              <Button
+                type="submit"
+                className="md:mx-8 lg:mx-10 font-suwanpum px-4 sm:px-5 lg:px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full text-sm sm:text-base"
+              >
                 Login Now
               </Button>
-            <Button className=" font-suwanpum px-4 sm:px-5 lg:px-6 py-2 bg-gradient-to-r from-pink-500 to-red-500 text-white rounded-full text-sm sm:text-base">
-              Sign up
-            </Button>
+              <Link href="/signup">
+              <Button className="font-suwanpum px-4 sm:px-5 lg:px-6 py-2 bg-gradient-to-r from-pink-500 to-red-500 text-white rounded-full text-sm sm:text-base">
+                  Sign up
+                </Button>
+              </Link>
             </div>
-
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t" />
-              </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-background px-2 text-muted-foreground">
-                  Login with Others
-                </span>
-              </div>
-            </div>
-
-            <Button
-              variant="outline"
-              className="w-full"
-              onClick={() => {}}
-            >
-              <Image
-                src="/google.svg"
-                alt="Google"
-                width={20}
-                height={20}
-                className="mr-2"
-              />
-              Login with Google
-            </Button>
           </form>
         </div>
       </div>

@@ -11,8 +11,9 @@ const Footer = () => {
             Track News
           </h2>
           <p className="text-sm sm:text-base font-suwanpum text-gray-400 leading-relaxed mb-6">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Get breaking updates, trending stories,
+           and in-depth coverage from around the globe,
+            all in one place. Stay connected to what matters most.
           </p>
           <div className="flex space-x-4">
             <a href="#" className="text-gray-400 hover:text-white" aria-label="Facebook">
