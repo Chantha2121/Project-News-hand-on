@@ -23,6 +23,9 @@ const suwannaphum_init = Suwannaphum({
 export const metadata = {
   title: "Track News",
   description: "Provide news world wide to everyone",
+  icons:{
+    icon: '/logo.svg',
+  }
 };
 
 export default function RootLayout({ children }) {
