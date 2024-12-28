@@ -53,13 +53,11 @@ const HotNews = () => {
               key={index}
               className="bg-white rounded-lg shadow-md overflow-hidden"
             >
-              {article.urlToImage && (
-                <img
-                  src={article.urlToImage || '/default.jpg'}
-                  alt={article.title}
-                  className="w-full h-48 object-cover"
-                />
-              )}
+              <img
+                src={article.urlToImage || '/default.jpg'}
+                alt={article.title}
+                className="w-full h-48 object-cover"
+              />
               <div className="p-4">
                 <h2 className="text-lg font-semibold text-gray-800 mb-2">
                   {article.title}

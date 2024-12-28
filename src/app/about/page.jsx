@@ -7,7 +7,7 @@ const About = () => {
       id: 1,
       name: "Choeurn Chantha",
       role: "Project Manager",
-      image: "/chantha.png",
+      image: "/mypic.png",
     },
     {
       id: 2,
@@ -29,45 +29,23 @@ const About = () => {
     },
   ];
 
-  const newsItems = [
-    {
-      id: 1,
-      title: "New Office Opening in Paris",
-      date: "December 1, 2024",
-      description:
-        "We’re excited to announce the opening of our new office in Paris to better serve our European clients.",
-    },
-    {
-      id: 2,
-      title: "Award for Best Startup",
-      date: "November 15, 2024",
-      description:
-        "Our company has been recognized as the best startup of the year in the tech innovation category!",
-    },
-    {
-      id: 3,
-      title: "Upcoming Annual Conference",
-      date: "January 20, 2025",
-      description:
-        "Join us for our annual conference where we’ll share exciting updates and innovations.",
-    },
-  ];
-
   return (
-    <div className="bg-gray-100 text-gray-900 py-16 px-6">
+    <div className="bg-gray-50 text-gray-900 py-16 px-6">
       {/* Team Section */}
       <div className="max-w-7xl mx-auto text-center">
-        <h1 className="text-5xl font-extrabold mb-6 text-blue-700">Meet Our Team</h1>
-        <p className="text-lg text-gray-600 mb-12">
-          Meet the talented individuals who drive our company forward.
+        <h1 className="text-4xl md:text-5xl font-extrabold mb-8 text-blue-700">
+          Meet Our Team
+        </h1>
+        <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
+          This is Our Team to build the website
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {teamMembers.map((member) => (
             <div
               key={member.id}
-              className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 p-6"
+              className="bg-white rounded-2xl shadow-md hover:shadow-lg transition duration-300 p-8"
             >
-              <div className="relative w-24 h-24 mx-auto rounded-full overflow-hidden border-4 border-blue-300">
+              <div className="relative w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-blue-300">
                 <Image
                   src={member.image}
                   alt={member.name}
@@ -75,33 +53,21 @@ const About = () => {
                   objectFit="cover"
                 />
               </div>
-              <h3 className="mt-6 text-xl font-bold text-blue-700">{member.name}</h3>
+              <h3 className="mt-6 text-lg font-bold text-blue-700">{member.name}</h3>
               <p className="text-gray-500 text-sm">{member.role}</p>
             </div>
           ))}
         </div>
       </div>
 
-      {/* News Section */}
-      <div className="max-w-7xl mx-auto text-center mt-20">
-        <h1 className="text-5xl font-extrabold mb-6 text-blue-700">About Project</h1>
-        <p className="text-lg text-gray-600 mb-12">
-          Stay updated with the latest news and events from our company.
+      {/* About Project Section */}
+      <div className="max-w-4xl mx-auto mt-20 bg-white rounded-2xl shadow-md hover:shadow-lg transition duration-300 p-8">
+        <h1 className="text-4xl md:text-5xl font-extrabold mb-6 text-blue-700 text-center">
+          About Project
+        </h1>
+        <p className="text-gray-600 text-lg text-center">
+          Our project is the Hand on Project for course Web and Cloud Technology. We build the Website using Next JS frontend, Node JS for the backend, and also Database we use MySql. For the Website is News Aggregator Website. Our Website Provide the all the News all the world.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {newsItems.map((news) => (
-            <div
-              key={news.id}
-              className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 p-6"
-            >
-              <h3 className="text-2xl font-bold text-blue-700 mb-4">
-                {news.title}
-              </h3>
-              <p className="text-sm text-gray-400 mb-4">{news.date}</p>
-              <p className="text-gray-600">{news.description}</p>
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   );
