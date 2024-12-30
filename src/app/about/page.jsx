@@ -6,26 +6,26 @@ const About = () => {
     {
       id: 1,
       name: "Choeurn Chantha",
-      role: "Project Manager",
-      image: "/mypic.png",
+      role: "Software Engineer",
+      image: "/chantha2.jpg",
     },
     {
       id: 2,
-      name: "Slans Alons",
-      role: "Business Development",
-      image: "/marina.png",
+      name: "Sean Nary",
+      role: "Software Developer",
+      image: "/nary.jpg",
     },
     {
       id: 3,
-      name: "Josha Michal",
-      role: "UX/UI Designer",
-      image: "/marina.png",
+      name: "Leang Soknat",
+      role: "Software Developer",
+      image: "/soknat.jpg",
     },
     {
       id: 4,
-      name: "Johan Wright",
-      role: "Head of Marketing",
-      image: "/marina.png",
+      name: "Teom Marina",
+      role: "Software Developer",
+      image: "/marina.jpg",
     },
   ];
 
@@ -45,7 +45,7 @@ const About = () => {
               key={member.id}
               className="bg-white rounded-2xl shadow-md hover:shadow-lg transition duration-300 p-8"
             >
-              <div className="relative w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-blue-300">
+              <div className="relative  w-48 h-64 mx-auto overflow-hidden rounded-lg border-4 border-blue-300">
                 <Image
                   src={member.image}
                   alt={member.name}
