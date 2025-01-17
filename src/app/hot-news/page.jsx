@@ -14,7 +14,7 @@ const HotNews = () => {
         'https://newsapi.org/v2/top-headlines',
         {
           params: {
-            apiKey: api_key,
+            apiKey: "8c783b7ea7844d02bf898cb39b48f84a",
             country: 'us',
             category: 'general',
             pageSize: 10,
