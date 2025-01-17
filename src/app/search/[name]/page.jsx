@@ -53,7 +53,7 @@ export default function SearchPage({ params }) {
       )}
 
       {!isLoading && searchResults.length === 0 && (
-        <p>No results found for "{name}".</p>
+        <p>No results found for {name && `"${name}"`}</p>
       )}
 
       {!isLoading && searchResults.length > 0 && (
