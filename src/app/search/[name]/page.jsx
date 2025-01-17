@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react'
 
 export default function SearchPage({ params }) {
+  const api_key = process.env.NEXT_PUBLIC_API_KEY;
   const [resolvedParams, setResolvedParams] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -27,7 +28,7 @@ export default function SearchPage({ params }) {
       setIsLoading(true);
       try {
         const res = await fetch(
-          `https://newsapi.org/v2/everything?q=${encodeURIComponent(name)}&apiKey=8c783b7ea7844d02bf898cb39b48f84a`
+          `https://newsapi.org/v2/everything?q=${encodeURIComponent(name)}&apiKey=${api_key}`
         );
         const data = await res.json();
         const filteredResults = data.articles.filter(article => article.urlToImage);

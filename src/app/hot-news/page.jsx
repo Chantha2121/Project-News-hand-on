@@ -9,12 +9,12 @@ const HotNews = () => {
   // Fetch news using NewsAPI
   const fetchNews = async () => {
     try {
-      const API_KEY = '8c783b7ea7844d02bf898cb39b48f84a'; // Replace with your NewsAPI key
+      const api_key = process.env.NEXT_PUBLIC_API_KEY;// Replace with your NewsAPI key
       const response = await axios.get(
         'https://newsapi.org/v2/top-headlines',
         {
           params: {
-            apiKey: API_KEY,
+            apiKey: api_key,
             country: 'us',
             category: 'general',
             pageSize: 10,

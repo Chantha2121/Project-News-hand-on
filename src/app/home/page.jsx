@@ -5,9 +5,10 @@ import NewsCard from "@/components/newCard";
 
 // Fetch News Data
 async function fetchNewsData() {
+  const api_key = process.env.NEXT_PUBLIC_API_KEY;
   try {
     const response = await axios.get(
-      `https://newsapi.org/v2/top-headlines?country=us&pageSize=12&apiKey=8c783b7ea7844d02bf898cb39b48f84a`
+      `https://newsapi.org/v2/top-headlines?country=us&pageSize=12&apiKey=${api_key}`
     );
     const articles = response.data.articles.filter(article => article.urlToImage);
 
