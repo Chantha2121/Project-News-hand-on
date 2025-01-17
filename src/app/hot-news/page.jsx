@@ -35,9 +35,10 @@ const HotNews = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-screen">
-        <p className="text-lg font-bold">Loading...</p>
-      </div>
+      <div className="flex justify-center items-center py-20">
+            <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent border-solid rounded-full animate-spin"></div>
+            <p className="ml-4 text-blue-500 text-lg font-semibold">Searching...</p>
+          </div>
     );
   }
 

@@ -30,7 +30,8 @@ export default function SearchPage({ params }) {
           `https://newsapi.org/v2/everything?q=${encodeURIComponent(name)}&apiKey=8c783b7ea7844d02bf898cb39b48f84a`
         );
         const data = await res.json();
-        setSearchResults(data.articles || []);
+        const filteredResults = data.articles.filter(article => article.urlToImage);
+        setSearchResults(filteredResults || []);
       } catch (error) {
         console.error('Error fetching news:', error);
       } finally {

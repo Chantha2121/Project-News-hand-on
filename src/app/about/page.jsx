@@ -7,7 +7,7 @@ const About = () => {
       id: 1,
       name: "Choeurn Chantha",
       role: "Software Engineer",
-      image: "/chantha2.jpg",
+      image: "/chantha.png",
     },
     {
       id: 2,
@@ -23,7 +23,7 @@ const About = () => {
     },
     {
       id: 4,
-      name: "Teom Marina",
+      name: "Taem Marina",
       role: "Software Developer",
       image: "/marina.jpg",
     },

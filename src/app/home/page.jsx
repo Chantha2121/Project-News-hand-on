@@ -3,13 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import NewsCard from "@/components/newCard";
 
-
 // Fetch News Data
 async function fetchNewsData() {
   try {
     const response = await axios.get(
-      `https://newsapi.org/v2/top-headlines?country=us&pageSize=12&apiKey=8c783b7ea7844d02bf898cb39b48f84a`)
-    const articles = response.data.articles;
+      `https://newsapi.org/v2/top-headlines?country=us&pageSize=12&apiKey=8c783b7ea7844d02bf898cb39b48f84a`
+    );
+    const articles = response.data.articles.filter(article => article.urlToImage);
 
     // Map data to match your UI requirements
     return {
@@ -17,14 +17,14 @@ async function fetchNewsData() {
         id: index,
         title: article.title,
         description: article.description,
-        imageUrl: article.urlToImage || "/default.jpg",
+        imageUrl: article.urlToImage,
         link: article.url,
       })),
       latest: articles.slice(6, 14).map((article, index) => ({
         id: index + 3,
         title: article.title,
         description: article.description,
-        imageUrl: article.urlToImage|| "/default.jpg",
+        imageUrl: article.urlToImage,
         link: article.url,
       })),
     };
@@ -43,7 +43,7 @@ export default async function HomePage() {
       {/* Hero Section */}
       <section className="relative bg-gray-900">
         <Image
-          src="/home.png"
+          src="/background_news.jpg"
           alt="Hero News"
           width={1920}
           height={1080}
@@ -52,10 +52,10 @@ export default async function HomePage() {
         />
         <div className="absolute inset-0 flex items-center justify-center px-4 sm:px-8">
           <div className="text-center max-w-3xl">
-            <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 text-white">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 text-[#ffffff]">
               Stay Informed with the Latest News
             </h1>
-            <p className="text-sm sm:text-base md:text-lg mb-6 text-gray-300">
+            <p className="text-sm sm:text-base md:text-lg mb-6 text-[#ffff]">
               Breaking stories from around the world, delivered to you.
             </p>
             <Link href="/category" passHref>
