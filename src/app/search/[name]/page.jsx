@@ -44,8 +44,7 @@ export default function SearchPage({ params }) {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-4">Search Results for "{name}"</h1>
-
+      <h1 className="text-2xl font-bold mb-4">Search Results for {name && `"${name}"`}</h1>
       {isLoading && (
         <div className="flex justify-center items-center py-16">
           <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent border-solid rounded-full animate-spin"></div>
